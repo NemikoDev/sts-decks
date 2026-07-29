@@ -9,4 +9,4 @@
 
 ### Can be found at
 
-- https://nyanpandev.github.io/sts-decks/
+- https://pyondev.github.io/sts-decks/
