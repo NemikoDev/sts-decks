@@ -163,9 +163,9 @@ export default function Home() {
   };
 
   return (
-    <div className="flex h-screen w-full bg-zinc-950 text-zinc-100 overflow-hidden font-sans antialiased">
+    <div className="flex flex-col md:flex-row min-h-screen md:h-screen w-full bg-zinc-950 text-zinc-100 overflow-x-hidden font-sans antialiased">
       
-      <aside className="w-64 bg-zinc-900 border-r border-zinc-800 flex flex-col justify-between shrink-0 h-full z-30">
+      <aside className="hidden md:flex w-64 bg-zinc-900 border-r border-zinc-800 flex-col justify-between shrink-0 h-full z-30">
         <div>
           <div className="p-6 border-b border-zinc-800/60">
             <h1 
@@ -294,7 +294,7 @@ export default function Home() {
                 ))}
               </div>
 
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-zinc-900/30 p-3 rounded-lg border border-zinc-900/60 text-xs">
+              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 bg-zinc-900/30 p-3 rounded-lg border border-zinc-900/60 text-xs overflow-x-auto">
                 {viewMode === "cards" ? (
                   <>
                     <div className="flex items-center gap-2 text-zinc-400">
@@ -354,7 +354,7 @@ export default function Home() {
 
               {viewMode === "cards" ? (
                 filteredCards.length > 0 ? (
-                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-10 gap-4">
+                  <div className="grid grid-cols-3 min-[420px]:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4 w-full">
                     {filteredCards.map((card) => (
                       <div key={card.id} className={`flex flex-col overflow-hidden bg-zinc-900/20 border rounded-xl shadow-lg hover:shadow-xl transition duration-200 group relative ${getBorderColor(card.character)}`}>
                         
@@ -672,6 +672,20 @@ export default function Home() {
       </div>
     </footer>
     </div>
+    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-zinc-900 border-t border-zinc-800 flex justify-around p-3 z-50">
+  <button
+    onClick={() => setActiveMenu("database")}
+    className={`text-xs font-bold uppercase tracking-wider ${activeMenu === "database" ? "text-amber-400" : "text-zinc-400"}`}
+  >
+    Database
+  </button>
+  <button
+    onClick={() => setActiveMenu("deckbuilder")}
+    className={`text-xs font-bold uppercase tracking-wider ${activeMenu === "deckbuilder" ? "text-amber-400" : "text-zinc-400"}`}
+  >
+    Deckbuilder ({customDeck.length})
+  </button>
+</nav>
     </div>
   );
 }
